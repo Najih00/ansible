@@ -3,7 +3,7 @@
    - name: Hello world
      debug: 
        msg: Hello World
-  - name: Copy file from local directory to remote host
+  - name: Copy file 
     ansible.builtin.copy:
       src: file.txt  
       dest: /home/driss/file.txt  
