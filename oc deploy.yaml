@@ -1,8 +1,6 @@
 - name: Deploy Service to OpenShift
   hosts: all
   gather_facts: false
-  collections:
-    - /var/lib/awx/vendor/awx_ansible_collections/ansible_collections
   tasks:
     - name: Deploy the service
       community.kubernetes.k8s:
