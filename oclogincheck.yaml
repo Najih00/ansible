@@ -2,11 +2,11 @@
   hosts: all
   gather_facts: false
   vars:
-    openshift_token: "YOUR_OPENSHIFT_TOKEN"
+    openshift_token: "sha256~4FUC0K0euF5hmjYv6dS1vj5wqInm17jzqGlqUTNl6ZE"
 
   tasks:
     - name: Log in to OpenShift using oc with token
-      command: oc login --token={{ openshift_token }} --server=YOUR_OPENSHIFT_SERVER
+      command: oc login --token={{ openshift_token }} --server=https://api.sandbox-m2.ll9k.p1.openshiftapps.com:6443
       ignore_errors: true
       register: oc_login_result
 
