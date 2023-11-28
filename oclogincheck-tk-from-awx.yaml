@@ -1,0 +1,20 @@
+- name: Log in to OpenShift and Deploy Service
+  hosts: all
+  gather_facts: false
+  vars:
+    openshift_token: "YOUR_OPENSHIFT_TOKEN"
+
+  tasks:
+    - name: Log in to OpenShift using oc with token
+      command: oc login --token={{ lookup('ansible.builtin.credential', 'OpenShift Token') }} --server=https://api.sandbox-m2.ll9k.p1.openshiftapps.com:6443
+      ignore_errors: true
+      register: oc_login_result
+
+    - name: Display OC login output
+      debug:
+        var: oc_login_result.stdout_lines
+
+    - name: Check if OC login was successful
+      fail:
+        msg: "Failed to log in to OpenShift using oc."
+      when: "oc_login_result.rc != 0"
