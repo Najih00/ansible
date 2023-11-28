@@ -2,7 +2,7 @@
   hosts: all
   gather_facts: false
   collections:
-  - community.kubernetes
+    - community.kubernetes
   tasks:
     - name: Deploy the service
       community.kubernetes.k8s:
