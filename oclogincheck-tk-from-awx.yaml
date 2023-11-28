@@ -1,12 +1,15 @@
 - name: Log in to OpenShift and Deploy Service
   hosts: all
   gather_facts: false
-  vars:
-    openshift_token: "YOUR_OPENSHIFT_TOKEN"
 
   tasks:
+      - name: Get OpenShift token from AWX credential
+      ansible.builtin.awx.awx_credentials:
+        name: "token"
+      register: oc_credential
+
     - name: Log in to OpenShift using oc with token
-      command: oc login --token={{ lookup('ansible.builtin.credential', 'OpenShift Token') }} --server=https://api.sandbox-m2.ll9k.p1.openshiftapps.com:6443
+      command: oc login --token={{ openshift_tokern }} --server=https://api.sandbox-m2.ll9k.p1.openshiftapps.com:6443
       ignore_errors: true
       register: oc_login_result
 
