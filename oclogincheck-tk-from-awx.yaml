@@ -3,9 +3,9 @@
   gather_facts: false
 
   tasks:
-      - name: Get OpenShift token from AWX credential
+    - name: Get OpenShift token from AWX credential
       ansible.builtin.awx.awx_credentials:
-        name: "token"
+      name: "token"
       register: oc_credential
 
     - name: Log in to OpenShift using oc with token
